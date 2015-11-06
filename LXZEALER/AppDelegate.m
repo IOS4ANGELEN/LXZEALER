@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "LaunchAnimationViewController.h"
+#import "LoginViewController.h"
+
+#define kAppKey @"1726018880"
+#define kRedirectURL @"https://api.weibo.com/oauth2/default.html"
+#define kSecretKey @"4709a60e7d0c272f7a517c40fb238b4b"
 
 @interface AppDelegate ()
 
@@ -17,6 +23,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    LaunchAnimationViewController *launchVC = [[LaunchAnimationViewController alloc] init];
+    self.window.rootViewController = launchVC;
+    
+    //输出调试信息
+   // [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:kAppKey];
+
     return YES;
 }
 
@@ -42,4 +55,35 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+    if ([response isKindOfClass:[WBSendMessageToWeiboResponse class]]) {
+        NSLog(@"返回状态%ld  %@   %@",response.statusCode,response.userInfo,response.requestUserInfo);
+    }else if([response isKindOfClass:[WBAuthorizeResponse class]]){
+        self.userID = [(WBAuthorizeResponse *)response userID];
+        self.access_token = [(WBAuthorizeResponse *)response accessToken];
+        self.refresh_token = [(WBAuthorizeResponse *)response refreshToken];
+        self.expirationDate = [(WBAuthorizeResponse *)response expirationDate];
+        [self refreshUserInfo];
+    }
+}
+
+- (void)refreshUserInfo{
+    NSString * urlStr = [NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?access_token=%@&uid=%@" ,self.access_token,self.userID];
+    NSData *userInfoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
+    NSDictionary *userInfoDict = [NSJSONSerialization JSONObjectWithData:userInfoData options:NSJSONReadingAllowFragments error:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"WBAuthorSuccessfulNotification" object:nil userInfo:userInfoDict];
+
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
 @end
