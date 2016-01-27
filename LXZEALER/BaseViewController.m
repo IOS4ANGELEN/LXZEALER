@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "UIView+Hud.h"
+#import <MBProgressHUD.h>
 
 @interface BaseViewController ()
 
@@ -38,11 +39,11 @@
 
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    [self.view showHud];
+    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [self.view hideHud];
+    [MBProgressHUD hideHUDForView:self.webView animated:YES];
 }
 
 #pragma mark - life Circle

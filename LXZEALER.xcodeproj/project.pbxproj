@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5221D5261C58907D0066B232 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5221D5251C58907D0066B232 /* User.m */; };
+		5221D5291C5892030066B232 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5221D5281C5892030066B232 /* AccountTool.m */; };
+		5221D52C1C5898BF0066B232 /* UserInfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5221D52B1C5898BF0066B232 /* UserInfoDetailViewController.m */; };
+		5221D5301C589C070066B232 /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5221D52E1C589C070066B232 /* UserInfoTableViewCell.m */; };
+		5221D5311C589C070066B232 /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5221D52F1C589C070066B232 /* UserInfoTableViewCell.xib */; };
 		526365CC1BEC3AA0002D67EA /* ZealerVideoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526365CB1BEC3AA0002D67EA /* ZealerVideoWebViewController.m */; };
 		5299564B1BE5F61200C40E03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299564A1BE5F61200C40E03 /* main.m */; };
 		5299564E1BE5F61200C40E03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299564D1BE5F61200C40E03 /* AppDelegate.m */; };
@@ -134,6 +139,15 @@
 /* Begin PBXFileReference section */
 		398893DB3CBEC3CF0F458EB1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		51393CB9F62F93B4D724E1FD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5221D5241C58907D0066B232 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5221D5251C58907D0066B232 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5221D5271C5892030066B232 /* AccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTool.h; sourceTree = "<group>"; };
+		5221D5281C5892030066B232 /* AccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTool.m; sourceTree = "<group>"; };
+		5221D52A1C5898BF0066B232 /* UserInfoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDetailViewController.h; sourceTree = "<group>"; };
+		5221D52B1C5898BF0066B232 /* UserInfoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDetailViewController.m; sourceTree = "<group>"; };
+		5221D52D1C589C070066B232 /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
+		5221D52E1C589C070066B232 /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
+		5221D52F1C589C070066B232 /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
 		526365CA1BEC3AA0002D67EA /* ZealerVideoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZealerVideoWebViewController.h; sourceTree = "<group>"; };
 		526365CB1BEC3AA0002D67EA /* ZealerVideoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZealerVideoWebViewController.m; sourceTree = "<group>"; };
 		529956461BE5F61200C40E03 /* LXZEALER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXZEALER.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +320,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5221D5231C58906B0066B232 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5221D5241C58907D0066B232 /* User.h */,
+				5221D5251C58907D0066B232 /* User.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		526365C31BEC2A88002D67EA /* registerAndFindPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +351,8 @@
 				5299569D1BE66D5700C40E03 /* copyRightViewController.h */,
 				5299569E1BE66D5700C40E03 /* copyRightViewController.m */,
 				5299569F1BE66D5700C40E03 /* copyRightViewController.xib */,
+				5221D52A1C5898BF0066B232 /* UserInfoDetailViewController.h */,
+				5221D52B1C5898BF0066B232 /* UserInfoDetailViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -424,6 +449,7 @@
 		529956861BE61FF000C40E03 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				5221D5231C58906B0066B232 /* Model */,
 				526365C31BEC2A88002D67EA /* registerAndFindPassword */,
 				526365C41BEC2AA7002D67EA /* controllers */,
 				5299568A1BE63A5B00C40E03 /* View */,
@@ -437,6 +463,9 @@
 				5299568B1BE63A8600C40E03 /* MyCollectionViewCell.h */,
 				5299568C1BE63A8600C40E03 /* MyCollectionViewCell.m */,
 				5299568E1BE63AB500C40E03 /* MyCollectionViewCell.xib */,
+				5221D52D1C589C070066B232 /* UserInfoTableViewCell.h */,
+				5221D52E1C589C070066B232 /* UserInfoTableViewCell.m */,
+				5221D52F1C589C070066B232 /* UserInfoTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -515,6 +544,8 @@
 			children = (
 				529956C61BE7856D00C40E03 /* UIView+Hud.h */,
 				529956C71BE7856D00C40E03 /* UIView+Hud.m */,
+				5221D5271C5892030066B232 /* AccountTool.h */,
+				5221D5281C5892030066B232 /* AccountTool.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -805,6 +836,7 @@
 				529957381BE79E9800C40E03 /* refresh-38@2x.png in Resources */,
 				5299573A1BE79E9800C40E03 /* refresh-40@2x.png in Resources */,
 				5299573C1BE79E9800C40E03 /* refresh-42@2x.png in Resources */,
+				5221D5311C589C070066B232 /* UserInfoTableViewCell.xib in Resources */,
 				5299574E1BE79E9800C40E03 /* refresh-60@2x.png in Resources */,
 				5299569C1BE6462C00C40E03 /* AboutZealerViewController.xib in Resources */,
 				5299568F1BE63AB500C40E03 /* MyCollectionViewCell.xib in Resources */,
@@ -890,7 +922,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5221D5261C58907D0066B232 /* User.m in Sources */,
 				529956A91BE7002D00C40E03 /* HJCarouselViewLayout.m in Sources */,
+				5221D52C1C5898BF0066B232 /* UserInfoDetailViewController.m in Sources */,
+				5221D5291C5892030066B232 /* AccountTool.m in Sources */,
 				5299577E1BEAFCD700C40E03 /* LoginViewController.m in Sources */,
 				529956891BE6200400C40E03 /* MyViewController.m in Sources */,
 				529956B31BE7345600C40E03 /* FirstTableViewCell.m in Sources */,
@@ -915,6 +950,7 @@
 				529957611BE89C0500C40E03 /* SocialGroupCollectionViewCell.m in Sources */,
 				529956A01BE66D5700C40E03 /* copyRightViewController.m in Sources */,
 				529956B71BE7497700C40E03 /* ZealerFixViewController.m in Sources */,
+				5221D5301C589C070066B232 /* UserInfoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

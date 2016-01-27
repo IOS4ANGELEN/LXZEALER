@@ -8,6 +8,8 @@
 
 #import "AboutZealerViewController.h"
 #import "copyRightViewController.h"
+#import "LoginViewController.h"
+#import "AccountTool.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 
@@ -40,6 +42,7 @@
     UIButton *logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     logoutButton.frame = CGRectMake(20, 574, SCREEN_WIDTH - 40, 44);
     [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(logoutAction) forControlEvents:UIControlEventTouchUpInside];
     logoutButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     logoutButton.backgroundColor = [UIColor colorWithRed:0.145 green:0.153 blue:0.176 alpha:1.000];
     [self.scrollView addSubview:logoutButton];
@@ -48,6 +51,24 @@
 - (void)copyButtonAction{
     copyRightViewController *copyVC = [[copyRightViewController alloc] init];
     [self.navigationController pushViewController:copyVC animated:YES];
+}
+
+#pragma mark - logoutAction
+- (void)logoutAction {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要退出登录吗?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [AccountTool deleteUserInfomation];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
