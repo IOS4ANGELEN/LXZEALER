@@ -308,6 +308,9 @@
                                 </constraints>
                                 <state key="normal" image="icon_weixin"/>
                                 <state key="highlighted" image="icon_weixin_pre"/>
+                                <connections>
+                                    <action selector="thirdPlatformLoginAction:" destination="9gc-sb-mQQ" eventType="touchUpInside" id="apN-Ke-U3c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTn-p7-8VP">
                                 <rect key="frame" x="278" y="476" width="45" height="45"/>
@@ -329,6 +332,9 @@
                                 </constraints>
                                 <state key="normal" image="icon_qq"/>
                                 <state key="highlighted" image="icon_qq_pre"/>
+                                <connections>
+                                    <action selector="thirdPlatformLoginAction:" destination="9gc-sb-mQQ" eventType="touchUpInside" id="PBr-EM-Jp8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

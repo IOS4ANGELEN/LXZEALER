@@ -38,7 +38,7 @@
 - (IBAction)thirdPlatformLoginAction:(UIButton *)sender {
     switch (sender.tag) {
         case 0:
-          //  [self WeChatLogin];
+            [self WeChatLogin];
             break;
         case 1:
             [self WeiboLogin];
@@ -64,4 +64,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ *  微信登录
+ */
+- (void)WeChatLogin {
+    
+    [[AppDelegate sharedAppdelegate] getWXCodeStringWithController:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

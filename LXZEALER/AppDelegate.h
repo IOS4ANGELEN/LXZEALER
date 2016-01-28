@@ -32,5 +32,15 @@
  *  过期时间
  */
 @property (strong ,nonatomic) NSDate *expirationDate;
+
+/**
+ *  获得appdelegate单例
+ *
+ *  @return appdelegate对象
+ */
++ (AppDelegate*)sharedAppdelegate;
+
+-(void)getWXCodeStringWithController:(id)vc;
+
 @end
 

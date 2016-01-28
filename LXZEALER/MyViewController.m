@@ -85,6 +85,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserinfo:) name:@"WBAuthorSuccessfulNotification" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserinfo:) name:@"WXAuthorSuccessfulNotification" object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -119,25 +121,47 @@
     //修改登录状态
     isLogin = YES;
     
-    //保存登录信息
-    User *user1 = [[User alloc] init];
-    
-    user1.id = [notification.userInfo[@"id"] integerValue];
-    
-    user1.name = notification.userInfo[@"name"];
-    
-    user1.userDescription = notification.userInfo[@"description"];
-    
-    user1.gender = notification.userInfo[@"gender"];
-    
-    user1.avatar_large = notification.userInfo[@"avatar_large"];
-    
-    [AccountTool saveUserInformation:user1];
-    
-    self.userNameLabel.text = user1.name;
-    
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user1.avatar_large]];
-    
+    if ([notification.name isEqualToString:@"WXAuthorSuccessfulNotification"]) {
+        
+        User *user1 = [[User alloc] init];
+        
+        user1.id = [notification.userInfo[@"unionid"] integerValue];
+        
+        user1.name = notification.userInfo[@"nickname"];
+        
+        user1.gender = notification.userInfo[@"sex"];
+        
+        user1.avatar_large = notification.userInfo[@"headimgurl"];
+        
+        user1.userDescription = @"暂无个人介绍";
+        
+        [AccountTool saveUserInformation:user1];
+        
+        self.userNameLabel.text = user1.name;
+        
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user1.avatar_large]];
+        
+    }else {
+        
+        //保存登录信息
+        User *user1 = [[User alloc] init];
+        
+        user1.id = [notification.userInfo[@"id"] integerValue];
+        
+        user1.name = notification.userInfo[@"name"];
+        
+        user1.userDescription = notification.userInfo[@"description"];
+        
+        user1.gender = notification.userInfo[@"gender"];
+        
+        user1.avatar_large = notification.userInfo[@"avatar_large"];
+        
+        [AccountTool saveUserInformation:user1];
+        
+        self.userNameLabel.text = user1.name;
+        
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user1.avatar_large]];
+    }
 }
 
 #pragma mark - 点击个人头像后相应的操作
@@ -157,6 +181,8 @@
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WBAuthorSuccessfulNotification" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WXAuthorSuccessfulNotification" object:nil];
 }
 
 @end

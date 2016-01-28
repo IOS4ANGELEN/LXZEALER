@@ -9,17 +9,33 @@
 #import "AppDelegate.h"
 #import "LaunchAnimationViewController.h"
 #import "LoginViewController.h"
+#import "WXApi.h"
 
 #define kAppKey @"1726018880"
 #define kRedirectURL @"https://api.weibo.com/oauth2/default.html"
 #define kSecretKey @"4709a60e7d0c272f7a517c40fb238b4b"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
+
+static AppDelegate *appdelegate;
+
 @implementation AppDelegate
 
+
++ (AppDelegate*)sharedAppdelegate {
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        appdelegate = [[AppDelegate alloc] init];
+    });
+    return appdelegate;
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -29,6 +45,8 @@
     //输出调试信息
    // [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
+    
+    [WXApi registerApp:@"wx8011e108b672eee2" withDescription:@"云石管家"];
 
     return YES;
 }
@@ -72,18 +90,102 @@
 
 - (void)refreshUserInfo{
     NSString * urlStr = [NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?access_token=%@&uid=%@" ,self.access_token,self.userID];
+    
+    NSLog(@"%@",urlStr);
+    
     NSData *userInfoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
+    
+ //   NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:<#(nonnull NSString *)#>]];
+    
     NSDictionary *userInfoDict = [NSJSONSerialization JSONObjectWithData:userInfoData options:NSJSONReadingAllowFragments error:nil];
     
+    NSLog(@"%@",userInfoDict);
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"WBAuthorSuccessfulNotification" object:nil userInfo:userInfoDict];
+    
+}
 
+#pragma mark - WXApiDelegate
+- (void)onResp:(BaseResp *)resp{
+    
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *temp=(SendAuthResp*)resp;
+        //根据code获取
+        [self getAccess_token:temp.code];
+    }
+}
+
+-(void)getWXCodeStringWithController:(id)vc
+{
+    //构造SendAuthReq结构体
+    SendAuthReq * req =[[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo,snsapi_base,snsapi_contact" ;
+    req.state = @"owner";
+    
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    LoginViewController *controller = (LoginViewController*)vc;
+    
+    [WXApi sendAuthReq:req viewController:controller delegate:self];
+}
+
+/**
+ *  根据code获取access_token
+ *
+ *  @param code code
+ */
+-(void)getAccess_token:(NSString*)code{
+    
+    NSString *urlStr =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",@"wx8011e108b672eee2",@"52b79fcca9ca43fcc7cd37358c7f3feb",code];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        
+        if (dic) {
+            
+            NSString *access_token = [dic objectForKey:@"access_token"];
+            NSString *openId = [dic objectForKey:@"openid"];
+            
+            [self getUserInfoWithAccess_token:access_token andOpenId:openId];
+        }
+    });
+    
+}
+
+/**
+ *  根据得到的access_token和openid得到用户个人信息
+ *
+ *  @param access_token_ access_token
+ *  @param openId_       openid
+ */
+-(void)getUserInfoWithAccess_token:(NSString*)access_token_ andOpenId:(NSString*)openId_{
+    
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",access_token_, openId_];
+    
+    NSURL *zoneUrl=[NSURL URLWithString:url];
+    
+    //微信第三方登录时必须异步加载
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSData *data = [NSData dataWithContentsOfURL:zoneUrl];
+        
+        NSDictionary *userInfoDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WXAuthorSuccessfulNotification" object:nil userInfo:userInfoDic];
+    });
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    [WXApi handleOpenURL:url delegate:self];
     return [WeiboSDK handleOpenURL:url delegate:self];
+
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    [WXApi handleOpenURL:url delegate:self];
     return [WeiboSDK handleOpenURL:url delegate:self];
+
 }
 @end
