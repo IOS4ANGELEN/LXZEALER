@@ -515,7 +515,6 @@
 				529956AA1BE7004600C40E03 /* view */,
 				529956A61BE7001E00C40E03 /* controllers */,
 				526365C51BEC3769002D67EA /* model */,
-				529956B81BE7497D00C40E03 /* zealerFix */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -527,6 +526,7 @@
 				529956501BE5F61200C40E03 /* ViewController.m */,
 				529956831BE606D700C40E03 /* FirstScrollViewController.h */,
 				529956841BE606D700C40E03 /* FirstScrollViewController.m */,
+				529956B81BE7497D00C40E03 /* zealerFix */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
