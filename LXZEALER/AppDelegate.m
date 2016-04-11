@@ -91,11 +91,7 @@ static AppDelegate *appdelegate;
 - (void)refreshUserInfo{
     NSString * urlStr = [NSString stringWithFormat:@"https://api.weibo.com/2/users/show.json?access_token=%@&uid=%@" ,self.access_token,self.userID];
     
-    NSLog(@"%@",urlStr);
-    
     NSData *userInfoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlStr]];
-    
- //   NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:<#(nonnull NSString *)#>]];
     
     NSDictionary *userInfoDict = [NSJSONSerialization JSONObjectWithData:userInfoData options:NSJSONReadingAllowFragments error:nil];
     

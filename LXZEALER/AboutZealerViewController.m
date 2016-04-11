@@ -24,8 +24,42 @@
     self.title = @"关于我们";
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 650);
     [self initContentView];
+   // [self initNavigationBar];
 }
 
+#pragma mark - initNavigationBar
+- (void)initNavigationBar {
+    
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    
+    navView.backgroundColor = [UIColor darkGrayColor];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, SCREEN_WIDTH, 40)];
+    
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    titleLabel.textColor = [UIColor whiteColor];
+    
+    titleLabel.text = @"关于我们";
+    
+    [navView addSubview:titleLabel];
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [backButton setBackgroundImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
+    
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    backButton.frame = CGRectMake(10, 10, 44, 44);
+    
+    [navView addSubview:backButton];
+}
+
+#pragma mark - backButtonAction
+- (void)backAction {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)initContentView{
     UIImageView *aboutImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 530)];
