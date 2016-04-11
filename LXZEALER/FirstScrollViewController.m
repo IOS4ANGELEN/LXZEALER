@@ -26,14 +26,16 @@
  初始化主页上第一个照片轮播器,pageControl,显示日期的label
  */
 - (void)initCycleScrollView{
-
-    UIImage *image1 = [UIImage imageNamed:@"first1.jpg"];
-    UIImage *image2 = [UIImage imageNamed:@"first2.jpg"];
-    UIImage *image3 = [UIImage imageNamed:@"first3.jpg"];
-    UIImage *image4 = [UIImage imageNamed:@"first4.jpg"];
-    NSArray *array = [NSArray arrayWithObjects:image1,image2,image3,image4, nil];
+  
+    NSMutableArray *imageArray = [NSMutableArray array];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 170) imagesGroup:array];
+    for ( int i = 1 ; i <= 4; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"first%d.jpg",i]];
+        [imageArray addObject:image];
+    }
+
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 170) imagesGroup:imageArray];
+    
     cycleScrollView.autoScrollTimeInterval = 2.0;
     cycleScrollView.delegate = self;
     cycleScrollView.dotColor = [UIColor colorWithWhite:0.906 alpha:1.000];
@@ -61,7 +63,6 @@
  初始化主页第二个内容轮播效果,用UICollectionView实现,用HJCarouselViewLayout 进行布局
  */
 - (UICollectionView*)collectionView{
-    
     if (!_collectionView) {
         HJCarouselViewLayout *layout = [[HJCarouselViewLayout alloc] initWithAnim:HJCarouselAnimLinear];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

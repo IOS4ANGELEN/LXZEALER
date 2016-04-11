@@ -351,7 +351,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		5221D5321C59EEE30066B232 /* SDKExport */ = {
+		5221D5321C59EEE30066B232 /* SDKExport(微信SDK) */ = {
 			isa = PBXGroup;
 			children = (
 				5221D5331C59EEE30066B232 /* libWeChatSDK.a */,
@@ -359,6 +359,7 @@
 				5221D5351C59EEE30066B232 /* WXApi.h */,
 				5221D5361C59EEE30066B232 /* WXApiObject.h */,
 			);
+			name = "SDKExport(微信SDK)";
 			path = SDKExport;
 			sourceTree = "<group>";
 		};
@@ -422,17 +423,13 @@
 		529956481BE5F61200C40E03 /* LXZEALER */ = {
 			isa = PBXGroup;
 			children = (
-				5221D5321C59EEE30066B232 /* SDKExport */,
-				5299564C1BE5F61200C40E03 /* AppDelegate.h */,
-				5299564D1BE5F61200C40E03 /* AppDelegate.m */,
-				5299576E1BE9911800C40E03 /* LaunchAnimationViewController.h */,
-				5299576F1BE9911800C40E03 /* LaunchAnimationViewController.m */,
+				5221D5321C59EEE30066B232 /* SDKExport(微信SDK) */,
 				5299576D1BE990E600C40E03 /* BaseViewController */,
-				529956A51BE7000700C40E03 /* First */,
-				529956861BE61FF000C40E03 /* My */,
-				529956821BE5FFC900C40E03 /* Social */,
-				529956D21BE79E1B00C40E03 /* Resource */,
-				529956C51BE7852C00C40E03 /* util */,
+				529956A51BE7000700C40E03 /* 首页 */,
+				529956861BE61FF000C40E03 /* 我的 */,
+				529956821BE5FFC900C40E03 /* 社区 */,
+				529956D21BE79E1B00C40E03 /* 资源 */,
+				529956C51BE7852C00C40E03 /* 工具 */,
 				529956551BE5F61200C40E03 /* Assets.xcassets */,
 				529956521BE5F61200C40E03 /* Main.storyboard */,
 				529956571BE5F61200C40E03 /* LaunchScreen.storyboard */,
@@ -445,7 +442,15 @@
 		529956491BE5F61200C40E03 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5299564C1BE5F61200C40E03 /* AppDelegate.h */,
+				5299564D1BE5F61200C40E03 /* AppDelegate.m */,
 				5299564A1BE5F61200C40E03 /* main.m */,
+				5299576E1BE9911800C40E03 /* LaunchAnimationViewController.h */,
+				5299576F1BE9911800C40E03 /* LaunchAnimationViewController.m */,
+				529956CC1BE795A800C40E03 /* BaseViewController.h */,
+				529956CD1BE795A800C40E03 /* BaseViewController.m */,
+				529956CF1BE79D1E00C40E03 /* BaseTableViewController.h */,
+				529956D01BE79D1E00C40E03 /* BaseTableViewController.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -468,7 +473,7 @@
 			path = LXZEALERUITests;
 			sourceTree = "<group>";
 		};
-		529956821BE5FFC900C40E03 /* Social */ = {
+		529956821BE5FFC900C40E03 /* 社区 */ = {
 			isa = PBXGroup;
 			children = (
 				5299567C1BE5FA9300C40E03 /* SocialTableViewController.h */,
@@ -477,10 +482,10 @@
 				5299575C1BE8925600C40E03 /* SocialTopViewController.m */,
 				5299575E1BE89BC000C40E03 /* views */,
 			);
-			name = Social;
+			name = "社区";
 			sourceTree = "<group>";
 		};
-		529956861BE61FF000C40E03 /* My */ = {
+		529956861BE61FF000C40E03 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
 				5221D5231C58906B0066B232 /* Model */,
@@ -488,7 +493,7 @@
 				526365C41BEC2AA7002D67EA /* controllers */,
 				5299568A1BE63A5B00C40E03 /* View */,
 			);
-			name = My;
+			name = "我的";
 			sourceTree = "<group>";
 		};
 		5299568A1BE63A5B00C40E03 /* View */ = {
@@ -504,7 +509,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		529956A51BE7000700C40E03 /* First */ = {
+		529956A51BE7000700C40E03 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
 				529956AA1BE7004600C40E03 /* view */,
@@ -512,7 +517,7 @@
 				526365C51BEC3769002D67EA /* model */,
 				529956B81BE7497D00C40E03 /* zealerFix */,
 			);
-			name = First;
+			name = "首页";
 			sourceTree = "<group>";
 		};
 		529956A61BE7001E00C40E03 /* controllers */ = {
@@ -573,7 +578,7 @@
 			name = view;
 			sourceTree = "<group>";
 		};
-		529956C51BE7852C00C40E03 /* util */ = {
+		529956C51BE7852C00C40E03 /* 工具 */ = {
 			isa = PBXGroup;
 			children = (
 				529956C61BE7856D00C40E03 /* UIView+Hud.h */,
@@ -581,10 +586,10 @@
 				5221D5271C5892030066B232 /* AccountTool.h */,
 				5221D5281C5892030066B232 /* AccountTool.m */,
 			);
-			name = util;
+			name = "工具";
 			sourceTree = "<group>";
 		};
-		529956D21BE79E1B00C40E03 /* Resource */ = {
+		529956D21BE79E1B00C40E03 /* 资源 */ = {
 			isa = PBXGroup;
 			children = (
 				529956D31BE79E4800C40E03 /* RefreshImages */,
@@ -593,7 +598,7 @@
 				5299576A1BE989AB00C40E03 /* iPhone-6-Crop.gif */,
 				529956C31BE7811F00C40E03 /* Loading-225px-W.gif */,
 			);
-			name = Resource;
+			name = "资源";
 			sourceTree = "<group>";
 		};
 		529956D31BE79E4800C40E03 /* RefreshImages */ = {
@@ -681,10 +686,6 @@
 		5299576D1BE990E600C40E03 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				529956CC1BE795A800C40E03 /* BaseViewController.h */,
-				529956CD1BE795A800C40E03 /* BaseViewController.m */,
-				529956CF1BE79D1E00C40E03 /* BaseTableViewController.h */,
-				529956D01BE79D1E00C40E03 /* BaseTableViewController.m */,
 			);
 			name = BaseViewController;
 			sourceTree = "<group>";
